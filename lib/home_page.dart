@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:itbook/itbook_service.dart';
 
-import 'book_card.dart';
+import 'book_widgets.dart';
 import 'models.dart';
 
 class HomePage extends StatelessWidget {
@@ -26,7 +26,7 @@ class NewArrivalPage extends StatefulWidget {
 }
 
 class _NewArrivalPageState extends State<NewArrivalPage> {
-  NewArrivalResp? _resp;
+  List<Book>? _books;
 
   @override
   void initState() {
@@ -36,25 +36,17 @@ class _NewArrivalPageState extends State<NewArrivalPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (_resp == null) {
+    if (_books == null) {
       return const Center(child: CircularProgressIndicator());
     } else {
-      var books = _resp!.books;
-      return ListView.builder(
-        itemCount: books.length,
-        itemBuilder: (context, index) {
-          return BookCard(book: books[index]);
-        },
-      );
+      return BookListView(books: _books!);
     }
   }
 
   Future<void> loadData() async {
     final resp = await getNewArrivals();
     setState(() {
-      _resp = resp;
+      _books = resp.books;
     });
   }
 }
-
-

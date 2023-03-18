@@ -56,3 +56,19 @@ class BookCard extends StatelessWidget {
     );
   }
 }
+
+class BookListView extends StatelessWidget {
+  const BookListView({Key? key, required this.books}) : super(key: key);
+  final List<Book> books;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: books.length,
+      itemBuilder: (context, index) {
+        return BookCard(book: books[index]);
+      },
+    );
+  }
+}
+
