@@ -28,7 +28,7 @@ class _SearchPageState extends State<SearchPage> {
         child: Text("검색 결과 없음"),
       );
     } else {
-      bodyWidget = BookListView(books: _books!);
+      bodyWidget = _buildBookListView();
     }
 
     return Scaffold(
@@ -66,6 +66,17 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 
+  Widget _buildBookListView() {
+    List<Book> books = _books!;
+
+    return ListView.builder(
+      itemCount: books.length,
+      itemBuilder: (context, index) {
+        return BookCard(book: books[index]);
+      },
+    );
+  }
+
   Future<void> loadData(String query) async {
     final resp = await search(query);
     setState(() {
@@ -73,3 +84,4 @@ class _SearchPageState extends State<SearchPage> {
     });
   }
 }
+
