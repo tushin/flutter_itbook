@@ -10,3 +10,12 @@ Future<NewArrivalResp> getNewArrivals() async {
   var json = jsonDecode(response.body);
   return NewArrivalResp.fromJson(json);
 }
+
+Future<NewArrivalResp> search(String query) async {
+  final queryParam = Uri.encodeQueryComponent(query);
+  final dataURL = Uri.parse('https://api.itbook.store/1.0/search/$queryParam');
+  http.Response response = await http.get(dataURL);
+  var json = jsonDecode(response.body);
+  return NewArrivalResp.fromJson(json);
+}
+
