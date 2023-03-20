@@ -11,11 +11,12 @@ Future<NewArrivalResp> getNewArrivals() async {
   return NewArrivalResp.fromJson(json);
 }
 
-Future<NewArrivalResp> search(String query) async {
+Future<SearchResp> search(String query, [int? page]) async {
   final queryParam = Uri.encodeQueryComponent(query);
-  final dataURL = Uri.parse('https://api.itbook.store/1.0/search/$queryParam');
+  final pageParam = page == null ? '' : "/$page";
+  final dataURL = Uri.parse('https://api.itbook.store/1.0/search/$queryParam$pageParam');
   http.Response response = await http.get(dataURL);
   var json = jsonDecode(response.body);
-  return NewArrivalResp.fromJson(json);
+  return SearchResp.fromJson(json);
 }
 
