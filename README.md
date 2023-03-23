@@ -333,3 +333,43 @@ class SearchPage extends StatelessWidget {
       body: bodyWidget,
     );
 ```
+
+## 페이지 네비게이션 웹처럼 혹은 디펜던시에서 자유롭게 
+
+```dart
+// main.dart
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.pink,
+      ),
+      initialRoute: "/",
+      routes: {
+        '/': (context) => const HomePage(),
+        '/search': (context) => const SearchPage(),
+      },
+    );
+  }
+}
+```
+
+```dart
+  return Scaffold(
+      appBar: AppBar(
+        title: const Text("IT books"),
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/search');
+              },
+              icon: const Icon(Icons.search),
+           ),
+         ],
+       ),
+      body: bodyWidget,
+  );
+```
