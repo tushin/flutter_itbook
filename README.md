@@ -29,9 +29,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(  
       theme: ThemeData(  
         primarySwatch: Colors.pink,  
-	  ),  
+      ),  
 	  home: const HomePage(),  
-	);  
+    );  
   }  
 }
 ```
@@ -49,13 +49,13 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(  
         title: const Text("IT books"),  
       ),  
-	  body: ListView(  
-	    children: const [  
-	      Text('book1'),  
-	      Text('book2'),  
-	    ],  
-	  ),  
-	);  
+      body: ListView(  
+        children: const [  
+          Text('book1'),  
+          Text('book2'),  
+        ],  
+      ),  
+    );  
   }  
 }
 ```
